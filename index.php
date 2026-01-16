@@ -1,69 +1,69 @@
 <?php
-include 'db.php'; 
-$sql = "SELECT * FROM students"; 
-$result = $conn->query($sql); 
+include "db.php";
+$sql = "SELECT * FROM students";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Student List</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: auto;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        a {
-            margin: 0 5px;
-        }
-    </style>
-</head>
+
 <body>
 
-<h2 style="text-align:center;">All Students</h2>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: auto;
+            }
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Course</th>
-        <th>Actions</th>
-    </tr>
+            th,
+            td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+            }
 
-    <?php
-    
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $row['id'] ?></td>
-                <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['email'] ?></td>
-                <td><?php echo $row['phone'] ?></td>
-                <td><?php echo $row['course'] ?></td>
-                <td>
-                    <a href="edit.php?id=<?php echo $row['id'] ?>">Edit</a>
-                    <a href="delete.php?id=<?php echo $row['id'] ?>">Delete</a>
-                </td>
-            </tr>
-    <?php
+            th {
+                background-color: #f2f2f2;
+            }
+
+            a {
+                margin: 0 5px;
+            }
+        </style>
+    </head>
+    <h2 style="text-align: center;">All Students</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email_address</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td><?php echo  $row['ID'] ?></td>
+                    <td><?php echo  $row['Name'] ?></td>
+                    <td><?php echo  $row['Email_address'] ?></td>
+                    <td><?php echo  $row['Phone'] ?></td>
+                    <td><?php echo  $row['Course'] ?></td>                    <td>
+                        <a href="edit.php?id=<?php echo $row['ID'] ?>">Edit</a>
+                        <a href="delete.php?id=<?php echo $row['ID'] ?>">Delete</a>
+                    </td>
+                </tr>
+        <?php
+            }
+        } else {
+            echo "<tr><td colspan = '6'>No students found.</td></tr>";
         }
-    } else {
-        echo "<tr><td colspan='6'>No students found</td></tr>";
-    }
-    ?>
-
-</table>
-
+        ?>
+    </table>
 </body>
+
 </html>

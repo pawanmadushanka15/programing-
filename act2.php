@@ -1,11 +1,10 @@
 <?php
 $length = 5;
-echo "The area is:",findArear($length);
+echo "The area is:".findArea($length);
 
-function findArear($length){
-    $area=$length*$length;
+function findArea($length){
+    $area = $length*$length;
     return $area;
 }
-
 
 ?>
